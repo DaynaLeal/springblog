@@ -33,8 +33,7 @@ public class MathController {
     //  /divide/6/by/3 = 2
     @RequestMapping(path = "/divide/{number}/by/{number2}", method = RequestMethod.GET)
     @ResponseBody
-    public String divideNumber(@PathVariable int number, @PathVariable int number2) {
-
+    public String divideNumber(@PathVariable double number, @PathVariable double number2) {
         return number + " / " + number2 + " = " + (number / number2);
     }
 }
