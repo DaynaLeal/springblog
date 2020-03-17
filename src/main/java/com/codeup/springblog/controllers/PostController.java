@@ -44,6 +44,13 @@ public class PostController {
         return "Deleting Post!";
     }
 
+    @GetMapping("posts/search")
+    public String searchPost(Model model){
+        Post post = postDao.findByTitle("tangible");
+        model.addAttribute("post", post);
+        return "posts/search";
+    }
+
 
 
 
@@ -63,14 +70,14 @@ public class PostController {
 //    }
 //
 //
-//    @RequestMapping(path = "/posts/{id}")
-//    public String getPost(@PathVariable int id, Model model) {
-//        Post firstPost = new Post(1, "First Post", "Today was the first day of remote learning. Would not recommend.");
-//        model.addAttribute("title", firstPost.getTitle());
-//        model.addAttribute("body", firstPost.getBody());
-//        //below is html path so you have to have a show.html in posts directory to display all this
-//        return "posts/show";
-//    }
+    @RequestMapping(path = "/posts/{id}")
+    public String getPost(@PathVariable int id, Model model) {
+        Post firstPost = new Post(1, "First Post", "Today was the first day of remote learning. Would not recommend.");
+        model.addAttribute("title", firstPost.getTitle());
+        model.addAttribute("body", firstPost.getBody());
+        //below is html path so you have to have a show.html in posts directory to display all this
+        return "posts/show";
+    }
 //
 //
 //    //same as previous exercise
