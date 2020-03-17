@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Home Page</title>
+<head th:replace="partials/header.html :: header">
+<!--    lines below will be removed with the above replace attribute-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Home Page</title>-->
 </head>
 <body>
 
-<h1 style="color:lightslategray">This is the home page!</h1>
-<br>
-<p style="color:lightslategray">all my blog stuff goes here</p>
+    <nav th:replace="partials/navbar.html :: navbar"></nav>
+
+    <h1 style="color:lightslategray">This is the home page!</h1>
+    <br>
+    <p style="color:lightslategray">all my blog stuff goes here</p>
 
 </body>
 </html>
