@@ -1,5 +1,7 @@
 package com.codeup.springblog.models;
 
+//THIS IS THE MODEL
+
 public class Post {
     private long id;
     private String title;
