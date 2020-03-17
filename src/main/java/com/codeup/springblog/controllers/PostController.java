@@ -4,6 +4,7 @@ import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.model.IModel;
 
 import java.util.ArrayList;
 
@@ -11,12 +12,14 @@ import java.util.ArrayList;
 public class PostController {
 
     //Below are from the VIEWS exercise
+        //after these controllers were updated, I forgot to create an index.html to show all and a show.html to show individual post
     @GetMapping("/posts")
     public String getPosts(Model model){
         ArrayList<Post> postList = new ArrayList<>();
         postList.add(new Post(2, "Second Post", "This is the content of my second post"));
         postList.add(new Post(3, "Third Post", "This is the content of my third post"));
-        model.addAttribute("posts", postList);
+        model.addAttribute("posts", postList); //this is what is called in the for each loop in index.html
+        //below is html path so you have to have an index.html in posts directory to display all this
         return "posts/index";
     }
 
@@ -26,6 +29,7 @@ public class PostController {
         Post firstPost = new Post(1, "First Post", "Today was the first day of remote learning. Would not recommend.");
         model.addAttribute("title", firstPost.getTitle());
         model.addAttribute("body", firstPost.getBody());
+        //below is html path so you have to have a show.html in posts directory to display all this
         return "posts/show";
     }
 
