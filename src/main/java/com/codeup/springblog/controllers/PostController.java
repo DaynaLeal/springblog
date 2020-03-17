@@ -26,6 +26,15 @@ public class PostController {
         return "posts/index";
     }
 
+    @GetMapping("/posts/update")
+    @ResponseBody
+    public String updatePost(){
+        Post post = postDao.getOne(1L);
+        post.setTitle("Updated Post Title!");
+        post.setBody("Updated Post Body! YAAAAY!");
+        postDao.save(post);
+        return "Updating Post!";
+    }
 
 
 
