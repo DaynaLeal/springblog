@@ -36,6 +36,14 @@ public class PostController {
         return "Updating Post!";
     }
 
+    @GetMapping("/posts/delete")
+    @ResponseBody
+    public String deletePost(){
+        Post post = postDao.getOne(2L);
+        postDao.delete(post);
+        return "Deleting Post!";
+    }
+
 
 
 
