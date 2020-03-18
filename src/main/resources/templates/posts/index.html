@@ -1,17 +1,17 @@
 
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>All Posts</title>
-</head>
+<head th:replace="partials/head :: head('All Posts')"></head>
 <body>
-    <nav th:include="/partials/navbar.html :: navbar"></nav>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-    <div th:each="post : ${posts}">
-        <h1 th:text="${post.title}"></h1>
-        <p th:text="${post.body}"></p>
+    <div class="container mt-4">
+        <div th:each="post : ${posts}">
+            <h1 th:text="${post.title}"></h1>
+            <p th:text="${post.body}"></p>
+        </div>
     </div>
 
+<th:block th:replace="partials/scriptsBootstrap :: scripts" />
 </body>
 </html>

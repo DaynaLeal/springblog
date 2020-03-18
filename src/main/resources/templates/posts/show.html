@@ -1,14 +1,12 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Show an Ad</title>
-</head>
+<head th:replace="partials/head :: head('Individual Post')"></head>
 <body>
-    <nav th:include="partials/navbar.html :: navbar"></nav>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
     <h1 th:text="${title}"></h1>
     <p th:text="${body}"></p>
 
+<th:block th:replace="partials/scriptsBootstrap :: scripts" />
 </body>
 </html>
