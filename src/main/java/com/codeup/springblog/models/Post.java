@@ -19,6 +19,8 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    //blank constructor
+    public Post(){};
 
     //constructor
     public Post(long id, String title, String body){
@@ -26,9 +28,6 @@ public class Post {
         this.title = title;
         this.body = body;
     }
-
-    //blank constructor
-    public Post(){};
 
     //getters and setters
     public long getId() {

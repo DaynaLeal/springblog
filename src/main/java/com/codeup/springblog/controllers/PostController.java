@@ -26,22 +26,27 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping("/posts/update")
-    @ResponseBody
-    public String updatePost(){
-        Post post = postDao.getOne(1L);
-        post.setTitle("Updated Post Title!");
-        post.setBody("Updated Post Body! YAAAAY!");
-        postDao.save(post);
-        return "Updating Post!";
+    @GetMapping("/posts/{id}/edit")
+    public String editPostForm(@PathVariable long id, Model model){
+        Post postToEdit = postDao.getOne(id);
+        model.addAttribute("post", postToEdit);
+        return "posts/edit";
     }
 
-    @GetMapping("/posts/delete")
-    @ResponseBody
-    public String deletePost(){
-        Post post = postDao.getOne(2L);
-        postDao.delete(post);
-        return "Deleting Post!";
+    @PostMapping("posts/{id}/edit")
+    public String editPost(@PathVariable long id, @RequestParam String title, @RequestParam String body){
+        Post postToEdit = postDao.getOne(id);
+        postToEdit.setTitle(title);
+        postToEdit.setBody(body);
+        postDao.save(postToEdit);
+        return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id){
+        Post postToDelete = postDao.getOne(id);
+        postDao.delete(postToDelete);
+        return "redirect:/posts";
     }
 
     @GetMapping("posts/search")
