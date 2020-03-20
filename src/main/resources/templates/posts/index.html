@@ -6,9 +6,14 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
     <div class="container mt-4">
+
         <div th:each="post : ${posts}">
-            <h1 th:text="${post.title}" class="mt-3"></h1>
+<!--            <h1 th:text="${post.title}" class="mt-3"></h1>-->
+<!--            <p th:text="${post.body}"></p>-->
+            <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
             <p th:text="${post.body}"></p>
+            <a th:href="'mailto:'+${post.user.email}"><span th:text="${post.user.email}"></span> </a>
+
             <div class="text-right mb-1">
                 <button><a th:href="@{|/posts/${post.id}/edit|}" style="color: black">Edit Post</a></button>
             </div>
@@ -17,6 +22,7 @@
             </form>
             <hr>
         </div>
+
     </div>
 
 <th:block th:replace="partials/scriptsBootstrap :: scripts" />

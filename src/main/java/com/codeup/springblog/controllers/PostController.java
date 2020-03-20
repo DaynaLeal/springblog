@@ -1,7 +1,9 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepo;
+import com.codeup.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,11 @@ public class PostController {
 //-------------------------------------BELOW ARE FROM THE REPO/JDA EXERCISE-------------------------------------
 
     private final PostRepo postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepo postDao) {
+    public PostController(PostRepo postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -33,7 +37,7 @@ public class PostController {
         return "posts/edit";
     }
 
-    @PostMapping("posts/{id}/edit")
+    @PostMapping("/posts/{id}/edit")
     public String editPost(@PathVariable long id, @RequestParam String title, @RequestParam String body){
         Post postToEdit = postDao.getOne(id);
         postToEdit.setTitle(title);
@@ -49,11 +53,32 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @GetMapping("posts/search")
+    @GetMapping("/posts/search")
     public String searchPost(Model model){
         Post post = postDao.findByTitle("tangible");
         model.addAttribute("post", post);
         return "posts/search";
+    }
+
+    @GetMapping("/posts/{id}")
+    public String getPost(@PathVariable long id, Model model){
+        model.addAttribute("post", postDao.getOne(id));
+        return "posts/show";
+    }
+
+    @GetMapping("/posts/create")
+    public String getCreateForm(){
+        return "posts/create";
+    }
+
+    @PostMapping("/posts/create")
+    public String createPost(@RequestParam String title, @RequestParam String body){
+        Post createdPost = new Post();
+        createdPost.setTitle(title);
+        createdPost.setBody(body);
+        createdPost.setUser(userDao.getOne(1l));
+        postDao.save(createdPost);
+        return "redirect:/posts";
     }
 
 
