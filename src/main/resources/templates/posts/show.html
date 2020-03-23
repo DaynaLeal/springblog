@@ -8,7 +8,6 @@
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.body}"></p>
         <a th:href="'mailto:'+${post.user.email}"><span th:text="${post.user.email}"></span> </a>
-
     </div>
 
 <th:block th:replace="partials/scriptsBootstrap :: scripts" />
