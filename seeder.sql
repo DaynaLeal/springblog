@@ -1,4 +1,4 @@
-insert into users(id, username, email, password) values (1, 'firstuser', 'firstuser@email.com', 'firstUser123');
+# insert into users(id, username, email, password) values (1, 'firstuser', 'firstuser@email.com', 'firstUser123');
 
 
 # insert into posts (id, body, title) values (1, 'Nulla ut erat id mauris vulputate elementum. Nullam varius.', 'architecture');
